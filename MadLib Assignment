@@ -1,0 +1,120 @@
+#######################################
+#Madlib Assignment
+#Orion Irving
+#March 12, 2024
+#
+#Focus: EasyGUI, F-String Formating, Lists
+#Step 1: Make a Madlib which takes info from the user to create a short responce(10-15)
+#Step2: Make a madlib which asks the user for multiple values and gives the answers randomly to create a final response
+#######################################
+import easygui as easy
+import random
+nouns = []
+names = []
+rooms = []
+adj = []
+foods = []
+animals = []
+verbs = []
+adv = []
+list_of_lists = [nouns ,names, rooms, adj, foods, animals, verbs, adv]
+
+def record_nouns():#asks for 5 nouns
+    for x in range (5):
+        msg = F"Please give me a noun"
+        title = "Nouns"
+        list_of_noun = easy.enterbox(msg, title)
+        nouns.append(list_of_noun)
+        
+def record_names():#asks for 3 names
+    for x in range (3):
+        msg = F"Please give me a name"
+        title = "Names"
+        list_of_names = easy.enterbox(msg, title)
+        names.append(list_of_names)
+
+def record_rooms():
+    for x in range (2):
+        msg = F"Please give me a room in a house"
+        title = "Roooms of a house"
+        list_of_rooms = easy.enterbox(msg, title)
+        rooms.append(list_of_rooms)
+
+def record_adj():#asks for 2 adj
+    for x in range (2):
+        msg = F"Please give me a adjective"
+        title = "Adjectives"
+        list_of_adj = easy.enterbox(msg, title)
+        adj.append(list_of_adj)
+
+def record_foods():#asks for 1 foods
+    msg = F"Please give me a food"
+    title = "Foods"
+    list_of_foods = easy.enterbox(msg, title)
+    list_of_animals = easy.enterbox(msg, title)
+    animals.append(list_of_animals)
+
+def record_verbs():#asks for 1 verb
+    msg = F"Please give me a past tense verb"
+    title = "verbs"
+    list_of_verbs = easy.enterbox(msg, title)
+    verbs.append(list_of_verbs)
+
+def record_adv():#asks for 1 adv
+    msg = F"Please give me an adverb"
+    title = "adverbs"
+    list_of_adv = easy.enterbox(msg, title)
+    adv.append(list_of_adv)
+        
+def record_animals():#asks for 1 foods
+    msg = F"Please give me a animal"
+    title = "animals"
+    list_of_animals = easy.enterbox(msg, title)
+    animals.append(list_of_animals)
+        
+def record_foods():#asks for 1 foods
+    msg = F"Please give me a food"
+    title = "Foods"
+    list_of_foods = easy.enterbox(msg, title)
+    foods.append(list_of_foods)
+        
+def do_it():    
+    record_nouns()
+    record_names()
+    record_rooms()
+    record_adj()
+    record_foods()
+    record_animals()
+    record_verbs()
+    record_adv()
+    
+def randomize():
+    random.shuffle(adv)
+    random.shuffle(nouns)
+    random.shuffle(names)
+    random.shuffle(rooms)
+    random.shuffle(adj)
+    random.shuffle(foods)
+    random.shuffle(animals)
+    random.shuffle(verbs)
+msgg = "would you like to randomize your answers? Yes or No"
+titlee = "Randomize?"
+easy.enterbox(msgg, titlee)
+if easy.enterbox().upper() == "YES":
+    do_it()
+    randomize()
+else:
+    do_it()
+    
+msg = F"Last week was my birthday. We went to my Grandma's house and had {foods[0]} for supper."\
+F" After that, we all sat in the {rooms[0]} to open presents. The first gift was from my sister,"\
+F"and it was a {nouns[0]}. The next gift was from my Mom and it was a(n) {adj[0]} {nouns[1]}. The gift after"\
+F" that was a {nouns[2]}. I pretended to be happy--but I already had one of those!"\
+F" All of a sudden, I heard a strange noise. The noise was {adj[1]} and I couldn't tell where it was coming from."\
+F"I looked around the room. I stood up and walked {adv[0]} to the {rooms[1]}. I looked in the {nouns[3]}. I looked under the {nouns[4]}"\
+F" I found nothing! I realized that everyone in the other room was laughing! I asked my friend"\
+F" {names[0]}, What's going on? I asked my other friend, {names[1]} They just laughed. I asked {names[2]} but they just"\
+F" {verbs[0]} around the room. I heard the noise again. Suddenly, it occured to me--the noise was coming from"\
+F" one of the presents! I opened the gift and and inside the box was a baby {animals[0]}! What a suprise!"
+title = "MadLib"
+easy.msgbox(msg, title)
