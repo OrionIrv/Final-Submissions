@@ -1,0 +1,113 @@
+import turtle as t
+import random
+import easygui as easy
+
+
+window = t.Screen()
+window.bgcolor("black")
+
+setup = t.Turtle(shape="turtle", visible=False)
+setDown= t.Turtle(shape="turtle", visible=False)
+turt1 = t.Turtle(shape="turtle", visible=True)
+turt1.color("white")
+turt2 = t.Turtle(shape="turtle", visible=True)
+turt2.color("red")
+turt3 = t.Turtle(shape="turtle", visible=True)
+turt3.color("yellow")
+turt4 = t.Turtle(shape="turtle", visible=True)
+turt4.color("green")
+turt5 = t.Turtle(shape="turtle", visible=True)
+turt5.color("blue")
+
+racers = [turt1, turt2, turt3, turt4, turt5]
+
+race = True
+x=0
+
+t.setup(800, 800, 500, 0)
+
+end = 300
+
+xStart = -350  #The x and y of the start line
+
+yStart = 350
+
+
+#Functions for set up#
+def start_line():
+    setup.pencolor("white")
+    setup.pensize(3)
+    setup.penup()
+    setup.setpos((xStart,yStart))
+    setup.pendown()
+    setup.setpos((xStart,yStart-500))#setting up the start line
+    
+def end_line():
+    setDown.pencolor("white")
+    setDown.pensize(3)
+    setDown.penup()
+    setDown.setpos((300,yStart))
+    setDown.pendown()
+    setDown.setpos((300,yStart-500))
+
+def on_your_marks():
+    turt1.penup()
+    turt1.goto((xStart-18,yStart-75))
+    turt1.pendown()
+    turt2.penup()
+    turt2.goto((xStart-18,yStart-150))
+    turt2.pendown()
+    turt3.penup()
+    turt3.goto((xStart-18,yStart-225))
+    turt3.pendown()
+    turt4.penup()
+    turt4.goto((xStart-18,yStart-300))
+    turt4.pendown()
+    turt5.penup()
+    turt5.goto((xStart-18,yStart-375))
+    turt5.pendown()  #gets the turtles set up
+    
+def dotted_lines_down():
+    setup.penup()
+    setup.color("grey")
+    setup.goto(xStart+20,yStart)
+    while setup.ycor() >> -500:
+        setup.pendown()
+        setup.fd(10)
+        setup.penup()
+        setup.fd(10)
+
+####################
+#Set up is done
+    
+def runners(race):
+    while race:
+        for racer in racers:
+            if racer.xcor()<300:
+                steps = int(random.randint(1,10))
+                print(steps)
+                racer.fd(steps)
+            else:
+                #race over
+                race = False
+                if turt1.xcor() >= 300:
+                    print("winner turt1")
+                elif turt2.xcor() >= 300:
+                    print("winner turt2")
+                elif turt3.xcor() >= 300:
+                    print("winner turt3")
+                elif turt4.xcor() >= 300:
+                    print("winner turt4")
+                elif turt5.xcor() >= 300:
+                    print("winner turt5")
+              
+start_line()
+end_line()
+dotted_lines_down()
+on_your_marks()
+runners(race) 
+easy.msgbox("woohoo", "congrats")
+
+#make turtle race, raspberry pi example
+#need a function for creating the lines,( drawing vertical lines in grey or light grey)
+# and setting up the turtles in position,( making the turtles differing colours and in a vertical line facing the same way)
